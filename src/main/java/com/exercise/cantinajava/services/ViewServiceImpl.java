@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.node.JsonNodeType;
 import com.fasterxml.jackson.databind.node.TextNode;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -16,14 +18,20 @@ import java.util.Map;
 public class ViewServiceImpl implements ViewService{
 
     private ViewComposite parentView;
+    private ObjectMapper mapper;
 
     public ViewServiceImpl() {
-        this.parentView = null;
+        mapper = new ObjectMapper();
+        try {
+            String jsonString = new String(Files.readAllBytes(Paths.get("src/main/resources/testJsonPayload.json")));
+            loadJsonPayload(jsonString);
+        }catch(Exception e){
+            this.parentView = null;
+        }
     }
 
     @Override
     public void loadJsonPayload(String json) throws BadPayloadException{
-        ObjectMapper mapper = new ObjectMapper();
         try {
             JsonNode node = mapper.readTree(json);
             this.parentView = new ViewComposite("Main", null, node.get("identifier").toString());
@@ -65,7 +73,6 @@ public class ViewServiceImpl implements ViewService{
                 }
             }
         }
-        return;
     }
     private void parseView(Map.Entry<String,JsonNode> entry, View view) {
         if(entry.getValue() instanceof TextNode){
@@ -93,6 +100,5 @@ public class ViewServiceImpl implements ViewService{
                 parent.add(eleView);
             }
         }
-        return;
     }
 }
