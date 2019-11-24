@@ -9,6 +9,6 @@
 # Response:
 #  {
 #    "selectorType": "View",
-#    "selectorValue": "StackView",
+#    "selectorValue": "Input",
 #    "selectorResult": 26
 # }
