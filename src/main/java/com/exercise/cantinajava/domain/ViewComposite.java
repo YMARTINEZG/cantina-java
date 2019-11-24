@@ -21,6 +21,9 @@ public class ViewComposite extends View{
     @Override
     public int count(String selector) {
         int conval = 0;
+        if(this.getClassView().equals(selector)){
+           conval++;
+        }
         Iterator<View> iter = views.iterator();
         while(iter.hasNext()){
             View obj = iter.next();

@@ -48,4 +48,7 @@ public class View implements AbstractView{
         this.identifier = identifier;
     }
 
+    public String getClassView() {
+        return classView;
+    }
 }
