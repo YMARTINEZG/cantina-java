@@ -1,10 +1,29 @@
-# code-exercise
- End Points
+# Cantina coding challenge
+the app is a spring boot project that expose 2 endpoint :
+1. load the json - parse the json and create a view composite including all child views
+2. count views according with selectors 
 
+ End Points 
+ 
+ POST
+ Request: api/load
+ http://localhost:8080/api/load
+ 
+ payload:
+ 
+ https://github.com/jdolan/quetoo/blob/master/src/cgame/default/ui/settings/SystemViewController.json
+ 
+ 
  POST
  Request: /api/count
+ http://localhost:8080/api/count
 
-     http://localhost:8080/api/count
+The program must support simple selectors for the following view attributes: 
+ 
+class - The view class name, e.g. "StackView"
+classNames - CSS class names, e.g. ".container"
+identifier - The view identifier, e.g. "#videoMode"
+
 
 1.
  payload:
