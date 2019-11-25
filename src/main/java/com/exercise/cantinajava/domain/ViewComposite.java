@@ -17,7 +17,11 @@ public class ViewComposite extends View{
     public void add(View view){
         this.views.add(view);
     }
-
+    @Override
+    public void ls(List<View> list,String typeSelector, String selectorValue ) {
+        selectView(list, typeSelector, selectorValue, this);
+        this.views.forEach(view -> view.ls(list, typeSelector, selectorValue));
+    }
     @Override
     public int count(String selector) {
         int conval = 0;
@@ -30,5 +34,13 @@ public class ViewComposite extends View{
             conval += obj.count(selector);
         }
         return conval;
+    }
+
+    @Override
+    public String toString() {
+        return "ViewComposite{" +
+                super.toString() +
+                "views=" + views +
+                '}';
     }
 }

@@ -1,14 +1,13 @@
 package com.exercise.cantinajava.controllers;
 
-import com.exercise.cantinajava.domain.ResultDto;
+import com.exercise.cantinajava.domain.SelectorDto;
 import com.exercise.cantinajava.exceptions.BadPayloadException;
 import com.exercise.cantinajava.services.ViewService;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class MainViewController {
@@ -28,9 +27,8 @@ public class MainViewController {
         }
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-    @GetMapping("/api/count/{selector}")
-    public ResultDto countSelector(@PathVariable String selector){
-           Integer result = viewService.getAttributesCount(selector);
-           return new ResultDto("View", selector, result);
+    @PostMapping("/api/count")
+    public List<SelectorDto> countSelector(@RequestBody String selector){
+        return viewService.getAttributesCount(selector);
     }
 }

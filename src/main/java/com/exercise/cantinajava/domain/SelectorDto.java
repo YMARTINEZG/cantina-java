@@ -1,14 +1,17 @@
 package com.exercise.cantinajava.domain;
 
-public class ResultDto {
+public class SelectorDto {
     private String selectorType;
     private String selectorValue;
     private Integer selectorResult;
 
-    public ResultDto(String selectorType, String selectorValue, Integer selectorResult) {
+    public SelectorDto() {
+    }
+
+    public SelectorDto(String selectorType, String selectorValue) {
         this.selectorType = selectorType;
         this.selectorValue = selectorValue;
-        this.selectorResult = selectorResult;
+        this.selectorResult = 0;
     }
 
     public String getSelectorType() {
